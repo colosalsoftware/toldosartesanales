@@ -3,52 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Object with Babylon.js</title>
+    <title>Toldos Medellín</title>
     <style>
         body { margin: 0; }
-        canvas { display: block; }
+        canvas {
+            width: 100vw;
+            height: 60vh;
+            display: block;
+        }
     </style>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="icon" href="images/favicon.png" type="image/x-icon">
 </head>
 <body>
-    <canvas id="renderCanvas"></canvas>
-    <script>
-        // Get the canvas element
-        const canvas = document.getElementById("renderCanvas");
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" style="height: 120px; background-color: #e1e1e1;">
+        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="Logo Toldos Medellin" class="logo-icon" style="width: 120px;"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: white;">
+            <span class="navbar-toggler-icon" style="background-color: white;"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">NOSOTROS</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">PROPIEDADES</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#Contacto">CONTACTO</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-        // Generate the BABYLON 3D engine
+    <canvas id="renderCanvas"></canvas>
+
+    <!-- Footer -->
+    <section id="Contacto" class="contacto-section">
+        <div class="container-fluid">
+            <div class="row">
+                <h3 style="width: 70%; margin-left: 15%; margin-top: 50px; display: flex; justify-content: center; color: #fae871; padding: 15px; font-size: 80px;">Contacto<BR></h3>
+                <div class="col-lg-6 col-md-12">
+                    <h3 style="text-align: center; width: 80%; margin-left: 10%; font-size: 26px; color: white;">Escanea y</h3>
+                    <h3 style="text-align: center; width: 80%; margin-left: 10%; font-size: 26px; color: #fae871;">chatea</h3>
+                    <br>
+                    <img src="images/contacto/qrcontacto.png" style="margin-left: 30%; width: 40%;">
+                    <h3 style="text-align: center; width: 80%; margin-left: 10%; font-size: 26px; color: white;"><br>Cartagena, Colombia.</h3>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <h3 style="text-align: center; width: 80%; margin-left: 10%; font-size: 26px; color: #fae871;">Enviar Mensaje Directo</h3>
+                    <p style="font-size: 22px; padding: 80px; text-align: justify; color: white;">
+                        ¡Querido cliente de Espacio Elite! ¿Tienes alguna pregunta o comentario? Escríbenos a nuestro WhatsApp para una atención rápida y personalizada. ¡Estamos aquí para ayudarte!
+                    </p>
+                    <div style="display: flex; justify-content: center;">
+                        <a href="https://wa.link/2kqi4d" style="font-size: 24px; text-align: center; background-color: #25D366; text-decoration: none; color: white; width: 150px; height: 40px; border-radius: 10px;">WhatsApp</a>
+                    </div>
+                    <h6 style="margin-left: 25%; margin-top: 30px; width: 50%; text-align: center; justify-content: center; color: white;">Diseñado y Desarrollado por:<br> <a href="https://colosalsoftware.com/" style="text-decoration: none; color: #fae871;">COLOSAL SOFTWARE & DESARROLLO</a></h6>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        const canvas = document.getElementById("renderCanvas");
         const engine = new BABYLON.Engine(canvas, true);
 
-        // Create the scene space
         const createScene = function () {
             const scene = new BABYLON.Scene(engine);
-
-            // Add a camera to the scene and attach it to the canvas
-            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI / 2, Math.PI / 2, 2, BABYLON.Vector3.Zero(), scene);
+            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI, Math.PI / 2.2, 3, new BABYLON.Vector3(0, 0.2, 0), scene);
             camera.attachControl(canvas, true);
 
-            // Add lights to the scene
             const light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
             const light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
 
-            // Load the 3D model
-            BABYLON.SceneLoader.Append("models/", "model.glb", scene, function (scene) {
-                // The scene is loaded
+            BABYLON.SceneLoader.Append("models/", "model.glb", scene, function (gltf) {
+                // Rotate the model 90 degrees around the Y axis
+                gltf.meshes.forEach(mesh => {
+                    mesh.rotation.y = Math.PI / 2;
+                });
             });
 
             return scene;
         };
 
-        // Create the scene
         const scene = createScene();
-
-        // Run the render loop
         engine.runRenderLoop(function () {
             scene.render();
         });
 
-        // Resize the engine on canvas resize
         window.addEventListener("resize", function () {
             engine.resize();
         });
