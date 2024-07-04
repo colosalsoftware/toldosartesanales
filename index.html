@@ -10,6 +10,7 @@
             width: 100vw;
             height: 60vh;
             display: block;
+            outline: none;
         }
     </style>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
@@ -77,13 +78,13 @@
 
         const createScene = function () {
             const scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color4(1, 1, 1, 1);
             const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI, Math.PI / 2.2, 3, new BABYLON.Vector3(0, 0.2, 0), scene);
             camera.attachControl(canvas, true);
             
             camera.lowerRadiusLimit = camera.upperRadiusLimit = camera.radius;
-            
+
             const light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
-            const light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
 
             BABYLON.SceneLoader.Append("models/", "model.glb", scene, function (gltf) {
                 // Rotate the model 90 degrees around the Y axis
