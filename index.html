@@ -104,7 +104,7 @@
         const createScene = function () {
             const scene = new BABYLON.Scene(engine);
             scene.clearColor = new BABYLON.Color4(0.2, 0.2, 0.2, 1);
-            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI, Math.PI / 2.2, 3, new BABYLON.Vector3(0, 0.2, 0), scene);
+            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI, Math.PI / 2.2, 1.5, new BABYLON.Vector3(0, 0.2, 0), scene);
             camera.attachControl(canvas, true);
             
             camera.lowerRadiusLimit = camera.upperRadiusLimit = camera.radius;
