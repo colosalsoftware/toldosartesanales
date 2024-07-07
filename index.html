@@ -111,7 +111,7 @@
 
             const light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
 
-            BABYLON.SceneLoader.Append("models/", "morado1.glb", scene, function (gltf) {
+            BABYLON.SceneLoader.Append("models/", "morado2.glb", scene, function (gltf) {
                 // Rotate the model 90 degrees around the Y axis
                 gltf.meshes.forEach(mesh => {
                     mesh.rotation.y = Math.PI / 2;
