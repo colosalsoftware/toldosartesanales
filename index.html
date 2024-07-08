@@ -5,94 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toldos Medellín</title>
     <style>
-        body { margin: 0; }
+        body { margin: 0; overflow: hidden; }
         canvas {
             width: 100vw;
-            height: 60vh;
+            height: 100vh;
             display: block;
             outline: none;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            z-index: 1;
+        }
+        .overlay a {
+            color: white;
+            font-size: 18px;
+            margin-right: 20px;
+            text-decoration: none;
         }
     </style>
     <script src="https://cdn.babylonjs.com/babylon.js"></script>
     <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
-    <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="icon" href="images/favicon.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
 </head>
-<body style="overflow-x: hidden;">
+<body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light" style="height: 120px; background-color: #333;">
-        <a class="navbar-brand" href="index.html"><img src="images/logo.png" alt="Logo Toldos Medellin" class="logo-icon" style="width: 120px;"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #555;">
-            <span class="navbar-toggler-icon" style="background-color: #555;"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white; font-size: 18px; margin-right: 20px;" href="about.html">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: #F0B706; font-size: 18px; margin-right: 20px;" href="index.html">Toldos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" style="color: white; font-size: 18px; margin-right: 20px;" href="blog.html">Blog</a>
-                </li>
-            </ul>
+    <div class="overlay">
+        <a href="index.html"><img src="images/logo.png" alt="Logo Toldos Medellin" class="logo-icon" style="width: 120px;"></a>
+        <div>
+            <a href="about.html">Nosotros</a>
+            <a href="index.html" style="color: #F0B706;">Toldos</a>
+            <a href="blog.html">Blog</a>
         </div>
-    </nav>
+    </div>
     
     <canvas id="renderCanvas"></canvas>
-    
-    <!-- Footer -->
-    <section id="Contacto" class="contacto-section" style="background-color: #333; padding: 20px 0;">
+
+    <section id="Contacto" class="contacto-section" style="padding: 20px 0; position: absolute; bottom: 0; width: 100%; z-index: 1;">
         <div class="container">
             <div class="row justify-content-center" >
-                <div class="col-md-4 justify-content-center" style="margin-bottom: 10px;">
-                    <a href="#" class="btn btn-warning btn-block" style="font-size: 22px; font-weight: bold; ">Comprar</a>
+                <div class="col justify-content-center" style="margin-bottom: 10px; ">
+                    <a href="#" class="btn btn-warning btn-block" style="font-size: 15px; font-weight: bold;">Comprar</a>
                 </div>
-                <div class="col-md-4 justify-content-center" style="margin-bottom: 10px;">
-                    <a href="#" class="btn btn-warning btn-block" style="font-size: 22px; font-weight: bold; ">Rentar</a>
+                <div class="col justify-content-center" style="margin-bottom: 10px;">
+                    <a href="#" class="btn btn-warning btn-block" style="font-size: 15px; font-weight: bold;">Rentar</a>
                 </div>
             </div>
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-2 d-flex justify-content-center mb-3">
-                        <a href="mailto:tuemail@dominio.com" class="text-white">
-                            <i class="fas fa-envelope" style="font-size: 36px; color: #D44638;"></i>
-                        </a>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center mb-3">
-                        <a href="https://www.instagram.com/tuusuario" class="text-white" target="_blank">
-                            <i class="fab fa-instagram" style="font-size: 36px; color: #FC05B5;"></i>
-                        </a>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center mb-3">
-                        <a href="https://www.facebook.com/tuusuario" class="text-white" target="_blank">
-                            <i class="fab fa-facebook" style="font-size: 36px; color: #1877F2;"></i>
-                        </a>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center mb-3">
-                        <a href="https://www.tiktok.com/@tuusuario" class="text-white" target="_blank">
-                            <i class="fab fa-tiktok" style="font-size: 36px; color: #010101;"></i>
-                        </a>
-                    </div>
-                    <div class="col-2 d-flex justify-content-center mb-3">
-                        <a href="https://wa.me/tuusuario" class="text-white" target="_blank">
-                            <i class="fab fa-whatsapp" style="font-size: 36px; color: #25D366;"></i>
-                        </a>
-                    </div>
+            <div class="row justify-content-center">
+                <div class="col-2 d-flex justify-content-center mb-3">
+                    <a href="mailto:tuemail@dominio.com" class="text-white">
+                        <i class="fas fa-envelope" style="font-size: 20px; color: #D44638;"></i>
+                    </a>
+                </div>
+                <div class="col-2 d-flex justify-content-center mb-3">
+                    <a href="https://www.instagram.com/tuusuario" class="text-white" target="_blank">
+                        <i class="fab fa-instagram" style="font-size: 20px; color: #FC05B5;"></i>
+                    </a>
+                </div>
+                <div class="col-2 d-flex justify-content-center mb-3">
+                    <a href="https://www.facebook.com/tuusuario" class="text-white" target="_blank">
+                        <i class="fab fa-facebook" style="font-size: 20px; color: #1877F2;"></i>
+                    </a>
+                </div>
+                <div class="col-2 d-flex justify-content-center mb-3">
+                    <a href="https://www.tiktok.com/@tuusuario" class="text-white" target="_blank">
+                        <i class="fab fa-tiktok" style="font-size: 20px; color: #010101;"></i>
+                    </a>
+                </div>
+                <div class="col-2 d-flex justify-content-center mb-3">
+                    <a href="https://wa.me/tuusuario" class="text-white" target="_blank">
+                        <i class="fab fa-whatsapp" style="font-size: 20px; color: #25D366;"></i>
+                    </a>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <div class="col-md-12 d-flex justify-content-center mb-3">
-                    <a href="#" style="text-decoration: none; text-align: center; color: white;"> DISEÑADO Y DESARROLLADO POR COLOSAL SOFTWARE</a>
+                    <a href="#" style="text-decoration: none; text-align: center; color: white; font-size: 14px;">DISEÑADO Y DESARROLLADO POR COLOSAL SOFTWARE</a>
                 </div>
             </div>
         </div>
     </section>
-    
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
@@ -104,19 +103,33 @@
         const createScene = function () {
             const scene = new BABYLON.Scene(engine);
             scene.clearColor = new BABYLON.Color4(0.2, 0.2, 0.2, 1);
-            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI, Math.PI / 2.2, 1.5, new BABYLON.Vector3(0, 0.2, 0), scene);
+
+            const camera = new BABYLON.ArcRotateCamera("camera1", Math.PI, Math.PI / 2.2, 1.5, new BABYLON.Vector3(0, 1.8, 0), scene);
             camera.attachControl(canvas, true);
             
             camera.lowerRadiusLimit = camera.upperRadiusLimit = camera.radius;
 
+            // Configuración de luces
             const light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
+            const light2 = new BABYLON.HemisphericLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
+            const light3 = new BABYLON.DirectionalLight("dir01", new BABYLON.Vector3(0, -1, 1), scene);
+            light3.position = new BABYLON.Vector3(0, 5, -5);
+            const light4 = new BABYLON.PointLight("pointLight", new BABYLON.Vector3(2, 2, -2), scene);
+            light4.intensity = 0.5;
+            const light5 = new BABYLON.PointLight("pointLight2", new BABYLON.Vector3(-2, 2, 2), scene);
+            light5.intensity = 0.5;
 
             BABYLON.SceneLoader.Append("models/", "morado3.glb", scene, function (gltf) {
                 // Rotate the model 90 degrees around the Y axis
                 gltf.meshes.forEach(mesh => {
-                    mesh.rotation.y = Math.PI / 2;
+                    
+                    mesh.position.y += 2; 
                 });
+                camera.setTarget(new BABYLON.Vector3(0, 1.93, 0));
             });
+            BABYLON.SceneLoader.Append("models/", "morado3.glb", scene, function (gltf) {
+        
+    });
 
             return scene;
         };
